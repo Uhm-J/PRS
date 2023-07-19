@@ -1,0 +1,4 @@
+input_file: "/path/to/input/files"
+output_prefix: "output"
+plink_path: "/path/to/plink/1.9"
+
