@@ -9,7 +9,6 @@ This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stabl
 - [PRSice-2](https://choishingwan.github.io/PRSice/)
 - R >= 4.0.0
 
-Make sure that all tools are in your PATH.
 
 ## Installation
 1. Clone this repository:  
@@ -19,7 +18,7 @@ git clone https://github.com/Uhm-J/PRS.git
 
 2. Navigate into the cloned repository:  
 ```bash
-cd NOK_GWAS
+cd PRS
 ```
 
 ## Usage
