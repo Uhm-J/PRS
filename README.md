@@ -72,10 +72,12 @@ In this script:
 - `snp`, `stat`, `A1`, `A2`, and `pvalue` are columns in the GWAS file.
 
 Please note that PRSice requires specific formats for the GWAS and target data. Make sure your data is in the correct format before running this script.
+
 As well as the `.fam` file containing sample id, family id, and case/control/unknown (1/2/-9).
+
 For more of the specifics:
-[plink file formats](https://www.cog-genomics.org/plink/1.9/formats)
-[PRSice inputs](https://choishingwan.github.io/PRS-Tutorial/target/)
+- [plink file formats](https://www.cog-genomics.org/plink/1.9/formats)
+- [PRSice inputs](https://choishingwan.github.io/PRS-Tutorial/target/)
 
 ## Contact
 For any queries or bug reports, please raise an issue on this GitHub repository.
