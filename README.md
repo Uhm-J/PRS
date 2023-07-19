@@ -1,7 +1,7 @@
 # PRS QC Pipeline
 
 ## Description
-This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for the QC and analysis of GWAS data. The pipeline includes steps for data cleaning, filtering, and analysis, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/).
+This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for PRS calculation and corresponding QC of the target data. The pipeline includes steps for data cleaning, filtering, and analysis, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/).
 
 ## Requirements
 - [PLINK v1.9](https://www.cog-genomics.org/plink/1.9/)
