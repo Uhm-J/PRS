@@ -92,9 +92,9 @@ module load bioconductor
 2. **Run the script:**
 ```bash
 # Using example data
-Rscript scripts/PRSice_plot.R colony_data.all_score Venus Earth Mars Jupiter Neptune 
+Rscript scripts/PRSice_plot.R example_data/colony_data.all_score Venus Earth Mars Jupiter Neptune 
 ```
-In this, the example_data/colony_data.all_score is from the output from PRSice. 
+In this, the `example_data/colony_data.all_score` is from the output from PRSice. 
 The groups are from the fam file, where the names are the first part of the sample IDs.
 
 ## Contact
