@@ -3,7 +3,7 @@
 ## Description
 This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for PRS calculation and corresponding QC of the target data. The pipeline includes steps for data cleaning, filtering, and analysis, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/), and is specifically designed for the HPC of the AMC. 
 
-*If you want to run this locally, remove the `load modules` and make sure the packages are downloaded.*
+*If you want to run this Locally, remove the `load modules` and make sure the correct packages are installed. Swap `sbatch` with `bash` and remove the `sbatch [..]` from the snakemake command,*
 
 ## Requirements
 - [PLINK v1.9](https://www.cog-genomics.org/plink/1.9/)
