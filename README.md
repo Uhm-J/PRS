@@ -1,7 +1,7 @@
 # PRS QC Pipeline
 
 ## Description
-This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for PRS calculation and corresponding QC of the target data. The pipeline includes steps for data cleaning, filtering, and analysis, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/).
+This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for PRS calculation and corresponding QC of the target data. The pipeline includes steps for data cleaning, filtering, and analysis, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/), and is specifically designed for the HPC of the AMC. If you want to run this locally, remove the `load modules` and make sure the packages are downloaded.
 
 ## Requirements
 - [PLINK v1.9](https://www.cog-genomics.org/plink/1.9/)
@@ -27,6 +27,8 @@ cd PRS
 2. Run the Snakemake pipeline:
 
 ```bash
+# Load module first
+module load snakemake
 snakemake --cluster "sbatch -c 4 --mem {resources.mem_mb} -o logs/qc_%j.out" \
 --default-resources 'mem_mb=16000' -s snakefile -j4 --rerun-incomplete
 ```
@@ -77,6 +79,23 @@ As well as the `.fam` file containing sample id, family id, and case/control/unk
 For more of the specifics:
 - [plink file formats](https://www.cog-genomics.org/plink/1.9/formats)
 - [PRSice inputs](https://choishingwan.github.io/PRS-Tutorial/target/)
+
+## Visualization
+An Rscript that plots the distributions of the groups is also included. Modify the groups in `PRSice.sh` to be the sample IDs without the number. Example data is included.
+
+If you want to run the plots as standalone, follow these steps:
+1. **Load modules:** 
+```bash
+module load R
+module load bioconductor
+```
+2. **Run the script:**
+```bash
+# Using example data
+Rscript scripts/PRSice_plot.R colony_data.all_score Venus Earth Mars Jupiter Neptune 
+```
+In this, the example_data/colony_data.all_score is from the output from PRSice. 
+The groups are from the fam file, where the names are the first part of the sample IDs.
 
 ## Contact
 For any queries or bug reports, please raise an issue on this GitHub repository.
