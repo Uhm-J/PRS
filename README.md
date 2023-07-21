@@ -83,9 +83,10 @@ For more of the specifics:
 - [PRSice inputs](https://choishingwan.github.io/PRS-Tutorial/target/)
 
 ## Visualization
-An Rscript that plots the distributions of the groups is also included. Modify the groups in `PRSice.sh` to be the sample IDs without the number. Example data is included.
+An Rscript that plots the distributions of the groups is also included. Modify the groups in `PRSice.sh` to be the sample IDs without the number. 
+Have a look at the included example data.
 
-If you want to run the plots as standalone, follow these steps:
+*If you want to run the plots as standalone, follow these steps:* 
 1. **Load modules:** 
 ```bash
 module load R
