@@ -10,6 +10,7 @@ This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stabl
 - [Snakemake](https://snakemake.readthedocs.io/en/stable/)
 - [PRSice-2](https://choishingwan.github.io/PRSice/)
 - R >= 4.0.0
+- Preferably a conda environment with the R package: [`Affyio`](https://www.bioconductor.org/packages/release/bioc/html/affyio.html)
 
 
 ## Installation
@@ -26,7 +27,9 @@ cd PRS
 ## Usage
 1. Modify the `config.yaml` file to specify your input and output files and other parameters.
 
-2. Run the Snakemake pipeline:
+2. Convert the individual array data to individual VCF files. (Affymetrix Cytoscan HD array conversion script included)
+   
+3. Run the Snakemake pipeline for (1) converting the VCFs to PLINK, (2) merging with control (plink) data, assumed to be in the same format with the same SNPs as the target data, and (3) QC'ing the data:
 
 ```bash
 # Load module first
@@ -34,7 +37,7 @@ module load snakemake
 snakemake --cluster "sbatch -c 4 --mem {resources.mem_mb} -o logs/qc_%j.out" \
 --default-resources 'mem_mb=16000' -s snakefile -j4 --rerun-incomplete
 ```
-3. Run the PRS Bash script:
+4. Run the PRS Bash script:
    
 ```bash
 sbatch PRSice.sh
