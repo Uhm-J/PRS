@@ -1,9 +1,9 @@
 # PRS Pipeline + scripts
 
 ## Description
-This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for PRS calculation and corresponding QC of the target data. The pipeline includes steps for data cleaning, filtering, and analysis, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/), and is specifically designed for the HPC of the AMC. 
+This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for PRS calculation and corresponding QC of the target data. The pipeline includes steps for data conversion, data cleaning, filtering, and calculating and plotting the PRS, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/), and is specifically designed for the HPC of the AMC. 
 
-*If you want to run this Locally, remove the `load modules` and make sure the correct packages are installed. Swap `sbatch` with `bash` and remove the `sbatch [..]` from the snakemake command.*
+*Note:* If you want to run this Locally, remove the `load modules` and make sure the correct packages are installed. Swap `sbatch` with `bash` and remove the `sbatch [..]` from the snakemake command.
 
 ## Requirements
 - [PLINK v1.9](https://www.cog-genomics.org/plink/1.9/)
@@ -36,7 +36,7 @@ cd PRS
 sbatch 01_convert.sh -i /path/to/raw/files/directory -o /path/to/output_directory -l /path/to/cytoscan_annotation_library -s
 ```
 
-`-s` skips conversions that are already performed previously. You can remove this to convert all files.
+*Note:* `-s` skips conversions that are already performed previously. You can remove this to convert all files.
 
 3. Convert the VCF files to PED/MAP files and PLINK to be used in later analysis.
 
@@ -52,8 +52,8 @@ sbatch 02_preprocess.sh -i /path/to/vcf/files -o /output/of/plink -p /path/to/pl
 plink --bfile /path/to/target_plink --bmerge /path/to/control_plink --make-bed --out /path/to/output_plink
 ```
 
-*Make sure that there are only overlapping SNPs in these to files. You can accomplish this by using `cat` and the rsIDs of both files and keeping these.
-It could be that it's necessary to flip ambigious SNPs, but plink will suggest doing so.*
+*Note:* Make sure that there are only overlapping SNPs in these to files. You can accomplish this by using `cat` and the rsIDs of both files and retaining these SNPs.
+It could be that it's necessary to flip ambigious SNPs, but plink will suggest doing so.
 
 5. Run the Snakemake pipeline for QC'ing the data:
 
@@ -70,7 +70,7 @@ snakemake --cluster "sbatch -c 4 --mem {resources.mem_mb} -o logs/qc_%j.out" \
 sbatch 04_PRSice.sh
 ```
 
-Make sure to change the parameters in the `PRSice.sh` file.
+*Note:* Make sure to change the parameters in the `PRSice.sh` file.
 
 
 ## Workflow of Snakefile
