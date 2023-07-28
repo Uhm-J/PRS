@@ -25,7 +25,7 @@ module load R
 # Iterating over all files in input directory
 for file in "$input_dir"/*; do
     # Construct the output file path
-    output_file="$output_dir/$(basename "$file")"
+    output_file="$output_dir/$(basename "$file").vcf"
 
     # If the skip flag is set and the output file already exists, skip this iteration
     if $skip && [ -e "$output_file" ]; then
