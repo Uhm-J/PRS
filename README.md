@@ -11,6 +11,7 @@ This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stabl
 - [PRSice-2](https://choishingwan.github.io/PRSice/)
 - R >= 4.0.0
 - Preferably a conda environment with the R package: [`Affyio`](https://www.bioconductor.org/packages/release/bioc/html/affyio.html)
+- [Affymetrix annotation library file](https://sec-assets.thermofisher.com/TFS-Assets/LSG/Support-Files/CytoScanHD_Array_Analysis_Files_NA33-r3.zip)
 
 
 ## Installation
@@ -29,20 +30,23 @@ cd PRS
 
 2. Convert the individual array data to individual VCF files. (Affymetrix Cytoscan HD array conversion script included)
 
+
 *For Affymetrix:*
 ```bash
-sbatch convert.sh -i /path/to/raw/files/directory --skip
+sbatch 01_convert.sh -i /path/to/raw/files/directory -o /path/to/output_directory -l /path/to/cytoscan_annotation_library -s
 ```
 
-* `--skip` skips conversions that are already performed previously.
+`-s` skips conversions that are already performed previously. You can remove this to convert all files.
 
-4. Convert the VCF files to PED/MAP files and PLINK to be used in later analysis.
+3. Convert the VCF files to PED/MAP files and PLINK to be used in later analysis.
+
 
 ```bash
-sbatch preprocess.sh -i /path/to/vcf/files -o /output/of/plink -p /path/to/plink/binary
+sbatch 02_preprocess.sh -i /path/to/vcf/files -o /output/of/plink -p /path/to/plink/binary
 ```
 
 4. Merge the target plink with the control (plink) data.
+
 
 ```bash
 plink --bfile /path/to/target_plink --bmerge /path/to/control_plink --make-bed --out /path/to/output_plink
@@ -53,16 +57,17 @@ It could be that it's necessary to flip ambigious SNPs, but plink will suggest d
 
 5. Run the Snakemake pipeline for QC'ing the data:
 
+
 ```bash
 # Load module first
 module load snakemake
 snakemake --cluster "sbatch -c 4 --mem {resources.mem_mb} -o logs/qc_%j.out" \
---default-resources 'mem_mb=16000' -s snakefile -j4 --rerun-incomplete
+--default-resources 'mem_mb=16000' -s 03_snakefile -j4 --rerun-incomplete
 ```
 6. Run the PRS Bash script:
    
 ```bash
-sbatch PRSice.sh
+sbatch 04_PRSice.sh
 ```
 
 Make sure to change the parameters in the `PRSice.sh` file.
