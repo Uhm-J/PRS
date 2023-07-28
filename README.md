@@ -1,4 +1,4 @@
-# PRS QC Pipeline
+# PRS Pipeline + scripts
 
 ## Description
 This repository contains a [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline for PRS calculation and corresponding QC of the target data. The pipeline includes steps for data cleaning, filtering, and analysis, following the protocol from [Choi et al](https://choishingwan.github.io/PRS-Tutorial/target/), and is specifically designed for the HPC of the AMC. 
