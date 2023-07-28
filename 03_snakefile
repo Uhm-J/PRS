@@ -15,6 +15,7 @@ rule all:
         config["output_prefix"] + ".summary",
         config["output_prefix"] + ".QC.final.eigenvec"
 
+
 # The PLINK QC rule performs the initial quality control steps
 # It filters the SNPs based on minor allele frequency (--maf),
 # tests of Hardy-Weinberg Equilibrium (--hwe),
@@ -31,10 +32,10 @@ rule plink_qc:
         plink_path = config["plink_path"],
         in_file = config["input_file"],
         out_pre = config["output_prefix"],
-        maf = 0.01,
-        hwe = 1e-6,
-        geno = 0.01,
-        mind = 0.01
+        maf = config["maf"],
+        hwe = config["hwe"],
+        geno = config["geno"],
+        mind = config["mind"]
     shell:
         """
         {params.plink_path} \
