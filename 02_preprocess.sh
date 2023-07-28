@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Capture command line arguments
-while getopts i:o: flag
+while getopts i:o:p flag
 do
     case "${flag}" in
         i) input_dir=${OPTARG};;
