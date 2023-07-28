@@ -12,9 +12,9 @@ do
     esac
 done
 
-#SBATCH --job-name=PRS_preprocess
-#SBATCH --output=logs/PRS_preprocess_%A_%a.log
-#SBATCH --error=logs/PRS_preprocess_%A_%a.err
+#SBATCH --job-name=PRS_convert
+#SBATCH --output=logs/PRS_convert_%A_%a.log
+#SBATCH --error=logs/PRS_convert_%A_%a.err
 #SBATCH --time=02:00:00
 #SBATCH --mem=8G
 #SBATCH --cpus-per-task=1
