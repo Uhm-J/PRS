@@ -28,8 +28,30 @@ cd PRS
 1. Modify the `config.yaml` file to specify your input and output files and other parameters.
 
 2. Convert the individual array data to individual VCF files. (Affymetrix Cytoscan HD array conversion script included)
-   
-3. Run the Snakemake pipeline for (1) converting the VCFs to PLINK, (2) merging with control (plink) data, assumed to be in the same format with the same SNPs as the target data, and (3) QC'ing the data:
+
+*For Affymetrix:*
+```bash
+sbatch convert.sh -i /path/to/raw/files/directory --skip
+```
+
+* `--skip` skips conversions that are already performed previously.
+
+4. Convert the VCF files to PED/MAP files and PLINK to be used in later analysis.
+
+```bash
+sbatch preprocess.sh -i /path/to/vcf/files -o /output/of/plink -p /path/to/plink/binary
+```
+
+4. Merge the target plink with the control (plink) data.
+
+```bash
+plink --bfile /path/to/target_plink --bmerge /path/to/control_plink --make-bed --out /path/to/output_plink
+```
+
+*Make sure that there are only overlapping SNPs in these to files. You can accomplish this by using `cat` and the rsIDs of both files and keeping these.
+It could be that it's necessary to flip ambigious SNPs, but plink will suggest doing so.*
+
+5. Run the Snakemake pipeline for QC'ing the data:
 
 ```bash
 # Load module first
@@ -37,7 +59,7 @@ module load snakemake
 snakemake --cluster "sbatch -c 4 --mem {resources.mem_mb} -o logs/qc_%j.out" \
 --default-resources 'mem_mb=16000' -s snakefile -j4 --rerun-incomplete
 ```
-4. Run the PRS Bash script:
+6. Run the PRS Bash script:
    
 ```bash
 sbatch PRSice.sh
