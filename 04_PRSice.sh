@@ -9,10 +9,10 @@
 
 module load R
 
-plink_files="nok-amc.QC.final"  # QC'd plink files
-gwas="Body_Mass_Index.fixed-rsIDs.QC"  # Name of the GWAS
+plink_files="/path/to/plink/files"  # QC'd plink files
+gwas="GWAS_name"  # Name of the GWAS
 
-base="../PRS-obesity/Data/GWAS/"${gwas}
+base="/path/to/gwas/folder/"${gwas}
 out="output/"${gwas}
 snp="SNP"  # Column name of rsIDs
 stat="BETA"  # BETA or OR, depending on the GWAS
